@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <contextName>member360</contextName>
+	<property name="LOG_FILE_PATH" value="c:/logs" /> 
+	
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- Log message format -->
+		<encoder>
+          <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n
+          </pattern>
+        </encoder>
+	</appender>
+
+	<!-- Write logs to file -->
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<!-- Name of the log file -->
+		<file>${LOG_FILE_PATH}/member360springbatch.log</file>
+		<encoder>
+          <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n
+          </pattern>
+         </encoder>
+	</appender>	
+	
+	
+	<!-- Elastic implementation -->
+	<!--
+	<appender name="STASH"
+		class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+		
+		<remoteHost>${LOGSTASH_SERVER}</remoteHost>
+		<port>${LOGSTASH_SERVER_PORT}</port>
+
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+			<customFields>{"contextName":"member360"}</customFields>
+			<fieldNames>
+				<message>logMessage</message>
+			</fieldNames>
+		</encoder>
+	</appender>	
+	-->
+
+       <logger name="com.lh.dandi.coe" level="info" additivity="false">
+         <appender-ref ref="CONSOLE" />
+         <appender-ref ref="FILE" />
+         <!-- appender-ref ref="STASH" /-->                    
+       </logger>
+
+      <logger name="org.springframework" level="warn" additivity="false">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+        <!-- appender-ref ref="STASH" / -->                    
+      </logger> 
+	
+     <!-- Setting the root level of logging to WARN -->
+      <root level="warn">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+        <!-- appender-ref ref="STASH" / -->
+      </root>
+
+</configuration>

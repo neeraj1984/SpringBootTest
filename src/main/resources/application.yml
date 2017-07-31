@@ -1,0 +1,43 @@
+server:
+    port: 8191
+spring:
+    application:
+        admin:
+            enabled: true
+endpoints:
+    jmx:
+        unique-names: true
+csv:
+    file:
+        name: members.csv
+ftp:
+    full:
+        location: ftp://dicoe:dicoe@10.60.8.6/DataAndIntegration/
+    input:
+        file:
+            directory: DataAndIntegration
+    location: 10.60.8.6
+    password: dicoe
+    port: 21
+    user: dicoe
+archival:
+    directory: /home/dicoe/archival/
+source:
+    directory: /DataAndIntegration/
+    directory_2: /home/dicoe/DataAndIntegration/
+
+#RabitMQ settings   
+rabbitMQ:
+    exchange:
+        name: coe.integration
+    host: 10.60.8.6
+    user: admin
+    password: admin
+    port: 5672
+    queue:
+        name: Intake.queue
+    routing:
+        key: springBatch            
+        
+
+        
